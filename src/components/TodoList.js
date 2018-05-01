@@ -1,15 +1,20 @@
 import React from 'react';
 
-const TodoList = ({todos}) => {
-    var counter = 0
+const TodoList = ({ todos, onSubmitHandler }) => {
 
-    const todoItems = todos.map(todo => <li key={counter =+ 1}> 
-                {todo.title}
-                {todo.description}
-            </li>);
+    const onClickHandler = (index) => {
+        onSubmitHandler(index)
+    }
 
+    const todoItems = todos.map((todo, index) =>
+        <li key={index}>
+            <div> {todo.title} </div>
+            <div>{todo.description}</div>
+            <div> <button onClick={() => onClickHandler(index)}>-</button></div>
+        </li>
+    );
     return <ul className="col-md-4 list-group">
-        { todoItems }
+        {todoItems}
     </ul>;
 };
 
